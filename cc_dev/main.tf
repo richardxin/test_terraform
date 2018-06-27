@@ -27,14 +27,7 @@ resource "aws_emr_cluster" "cluster" {
   autoscaling_role = "${var.#AWS_ACCOUNT["autoscaling_role"]}"
   log_uri = "${var.#AWS_ACCOUNT["log_uri"]}"
 
-  step {
-    name="#STEP_NAME"
-    action_on_failure = "TERMINATE_CLUSTER"
-    hadoop_jar_step {
-    jar="command-runner.jar"
-    args = [#SPARK_ARGS,"--class","#CLASS_NAME","#JAR_PATH",#PROGRAM_ARGS]
-    }
-  }
+  step = "${var.steps}"
   scale_down_behavior = "TERMINATE_AT_TASK_COMPLETION"
 
   visible_to_all_users = true
