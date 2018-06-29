@@ -53,28 +53,6 @@ variable "instance_groups" {
   type = "list"
 }
 
-variable "steps" {
-  default = [
-    {
-         name="#STEP_NAME"
-         action_on_failure = "TERMINATE_CLUSTER"
-         hadoop_jar_step {
-             jar="command-runner.jar"
-             args = [#SPARK_ARGS,"--class","#CLASS_NAME","#JAR_PATH",#PROGRAM_ARGS]
-         }
-    },
-    {
-        name="#STEP_NAME"
-        action_on_failure = "TERMINATE_CLUSTER"
-        hadoop_jar_step {
-            jar="command-runner.jar"
-            args = [#SPARK_ARGS,"--class","#CLASS_NAME","#JAR_PATH",#PROGRAM_ARGS]
-        }
-    }
-  ]
-  type = "list"
-}
-
 variable "cc_dev_ec2_attributes" {
     default = [
     {
